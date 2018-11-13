@@ -1,0 +1,30 @@
+// benutzt https://www.thingiverse.com/thing:8796
+
+wanddicke=2.5;
+innnendurchmesserWaschmaschinenende=15;
+ausendurchmesserWaschmaschinende=innnendurchmesserWaschmaschinenende+wanddicke;
+blubb=11.3;
+strahlausgang=blubb-wanddicke;
+include<polyScrewThread_r1.scad>;
+difference()
+{
+        screw_thread(20,2,55,12,PI/2,1);
+    cylinder(d=blubb,h=12);
+}
+
+translate([0,0,-10])waschmaschinenende();
+
+module waschmaschinenende()
+{
+    difference()
+    {
+        cylinder(d=ausendurchmesserWaschmaschinende,h=10);
+        cylinder(d=innnendurchmesserWaschmaschinenende,h=10);
+    }
+    difference()
+    {
+        cylinder(d=blubb, h=15);
+        translate([0,0,10]) cylinder(d1=strahlausgang,d2=blubb,h=5);
+        cylinder(d=strahlausgang,h=10);
+    }
+}
